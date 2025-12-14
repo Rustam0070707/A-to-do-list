@@ -1,0 +1,10 @@
+### Update request to example server
+PUT http://localhost:8080/task/updateTask/1
+Content-Type: applicatoin/jason
+{
+    "title": "java",
+    "description": "Learn OOP of Java",
+    "completed": false,
+    "dueDate": "2025-10-06"
+  }
+###

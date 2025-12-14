@@ -1,39 +1,33 @@
-package com.todo.A.to_do.list.Model;
+package com.todo.A.to_do.list.DTO;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
-@Entity
-public class modelOfTodolist {
-    @Valid
 
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
+public class RequestDTO {
+@NotNull
+@NotBlank
+@Size(min = 1 , max = 15, message = "more or less than 1 less or equal to 15")
     private String title;
-
+@NotNull
+@NotBlank
+@Size(min = 1 , max = 200, message = "more or less than 1 less or equal to 200")
     private String description;
+@NotBlank(groups = CompletedGroup.class,message = "completed is mandatory")
+private boolean completed;
 
-    private boolean completed;
-    
-
+    @NotNull(message = "dueDate is mandatory")
     private LocalDate dueDate;
 
 
-    public int getId() {
-        return id;
+    public boolean isCompleted() {
+        return completed;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
     public String getTitle() {
@@ -52,13 +46,7 @@ public class modelOfTodolist {
         this.description = description;
     }
 
-    public boolean isCompleted() {
-        return completed;
-    }
 
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
 
     public LocalDate getDueDate() {
         return dueDate;

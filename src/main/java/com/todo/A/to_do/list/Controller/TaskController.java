@@ -1,12 +1,17 @@
 package com.todo.A.to_do.list.Controller;
 
+import com.todo.A.to_do.list.DTO.CompletedGroup;
+import com.todo.A.to_do.list.DTO.RequestDTO;
+import com.todo.A.to_do.list.DTO.ResponseDTO;
 import com.todo.A.to_do.list.Model.modelOfTodolist;
 import com.todo.A.to_do.list.Service.TaskService;
 import jakarta.validation.Valid;
+import jakarta.validation.groups.Default;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,16 +25,17 @@ public class TaskController {
     @Autowired
     TaskService service;
 @GetMapping("allTasks")
-    public ResponseEntity<List<modelOfTodolist>> getAllTasks(){
+    public ResponseEntity<List<ResponseDTO>> getAllTasks(){
     return service.getAllTasks();
 
 }
 @PostMapping("addTask")
-public ResponseEntity<String> createTask(@Valid @RequestBody modelOfTodolist task){
+public ResponseEntity<ResponseDTO> createTask(@Validated (Default.class)
+    @RequestBody RequestDTO task){
     return service.createTask(task);
 }
 @PutMapping("updateTask/{id}")
-    public ResponseEntity<String> updateTask(@PathVariable int id , @Valid @RequestBody modelOfTodolist task1){
+    public ResponseEntity<String> updateTask(@PathVariable int id , @Validated ({Default.class, CompletedGroup.class}) @RequestBody RequestDTO task1){
     return service.updateTask(id,task1);
 
 }

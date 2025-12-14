@@ -1,40 +1,12 @@
-package com.todo.A.to_do.list.Model;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+package com.todo.A.to_do.list.DTO;
 
 import java.time.LocalDate;
-@Entity
-public class modelOfTodolist {
-    @Valid
 
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
+public class ResponseDTO {
     private String title;
-
     private String description;
-
     private boolean completed;
-    
-
     private LocalDate dueDate;
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;

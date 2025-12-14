@@ -1,0 +1,12 @@
+### Add a new task
+POST http://localhost:8080/task/addTask
+Content-Type: application/json
+
+{
+    "title": "GO",
+    "description": "rn",
+    "completed": false,
+    "dueDate": "2025-12-31"
+}
+
+###
